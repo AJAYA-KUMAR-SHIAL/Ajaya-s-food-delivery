@@ -1,10 +1,29 @@
 import { LuVegan } from "react-icons/lu";
 
 import { GiChickenOven } from "react-icons/gi";
+import { useContext } from "react";
+import { dataContext } from "../context/UserContext";
 
 
 
 const Card = ({ foodData }) => {
+  
+
+  let {basketData, setBasketData} = useContext(dataContext)
+
+  const addDataToBasket = (id)=>{
+    const alreadyExist = basketData.find((item)=> item.id === id)
+    if(alreadyExist){
+      alert("Item already in basket")
+    } else{
+const cartData= foodData.find((item)=> item.id===id)
+ if(cartData){
+  setBasketData((prev)=>[...prev, {...cartData, quantity:1}])
+ }
+    }
+ 
+  }
+
   return (
     <div className="px-1 flex flex-wrap justify-center items-center w-full gap-2 md:gap-5 md:px-5">
    { foodData.map((item)=>(
@@ -24,7 +43,9 @@ const Card = ({ foodData }) => {
                   <span>{item.food_type}</span>
                 </div>
             </div>
-            <button className="bg-green-400 text-gray-500 font-bold text-sm md:text-[16px] py-2 px-4 rounded-lg hover:bg-green-500 hover:text-black hover:scale-105 duration-200 mt-1 transition-all cursor-pointer">Add to basket</button>
+            <button 
+            onClick={(e)=>{addDataToBasket(item.id)}}
+            className="bg-green-400 text-gray-500 font-bold text-sm md:text-[16px] py-2 px-4 rounded-lg hover:bg-green-500 hover:text-black hover:scale-105 duration-200 mt-1 transition-all cursor-pointer">Add to basket</button>
         </div>
         
         
