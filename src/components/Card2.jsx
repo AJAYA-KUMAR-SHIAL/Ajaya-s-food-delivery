@@ -1,10 +1,12 @@
 import React, { useContext } from 'react'
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { dataContext } from '../context/UserContext';
+import { BsCurrencyRupee } from "react-icons/bs";
+
 
 
 const Card2 = () => {
-  const {basketData, setBasketData, itemCount, setItemCount} =useContext(dataContext)
+  const {basketData, setBasketData} =useContext(dataContext)
   const removeFromBasket = (id) =>{
     setBasketData(basketData.filter((item)=> item.id !== id))
   }
@@ -42,7 +44,7 @@ const DecreaseItemCount = (id) => {
    <div>
      {basketData.map((item)=>(
  
-       <div key={item.id} className='w-full h-15 md:h-20 flex justify-between p-1 md:p-2 bg-gray-200 mt-2'>
+       <div key={item.id} className='w-full h-15 md:h-20 flex justify-between p-1 md:p-2 bg-gray-300 mt-2 shadow-lg rounded-md'>
     
     <div className='flex w-2/3'>
         <img className='h-13 w-15 md:h-15 md:w-20 rounded object-cover' src={item.food_image} alt="" />
@@ -61,10 +63,10 @@ const DecreaseItemCount = (id) => {
 </div>
     </div>
         <div className='flex flex-col items-center font-semibold gap-1'>
-            <h3 className='text-green-500 text-[15px]'>Rs. {item.price}/-</h3>
+            <h3 className='text-green-500 text-[15px] flex items-center'> <BsCurrencyRupee /> <span>{item.price}</span></h3>
             <span 
             onClick={()=> removeFromBasket(item.id)}
-            className='text-red-500 cursor-pointer'><RiDeleteBin6Line size={20}/></span>
+            className='text-red-500 cursor-pointer'><RiDeleteBin6Line size={16}/></span>
         </div>
     </div>
     ))}

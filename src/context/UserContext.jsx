@@ -9,7 +9,6 @@ function UserContext({ children }) {
     const [cate, setCate] = useState(foodData)
     const [showCart, setShowCart] = useState(false)
     const [basketData, setBasketData] = useState([])
-    const [foodQuantity, setFoodQuantity] = useState(1)
     let data= {
       input,
       setInput,
@@ -19,8 +18,7 @@ function UserContext({ children }) {
       setShowCart,
       basketData,
       setBasketData,
-      foodQuantity,
-      setFoodQuantity
+     
     
     }
   return (
